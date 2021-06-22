@@ -10,6 +10,8 @@ using System.Linq;
 using Microsoft.Win32.SafeHandles;
 using System.IO;
 using irsdkSharp.Exceptions;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace irsdkSharp
 {
@@ -47,41 +49,58 @@ namespace irsdkSharp
             _encoding = Encoding.GetEncoding(1252);
         }
 
+        private bool GetSimStatus()
+        {
+            using (WebClient client = new WebClient())
+            {
+                string response = client.DownloadString(Constants.IRStatusAddress);
+                bool running = (response.Split('\n')[1].Split(':')[1].Trim().Equals("1"));
+                return running;
+            }
+        }
+
         public bool Startup()
         {
             if (IsInitialized) return true;
 
-            try
+            if (GetSimStatus())
             {
-                iRacingFile = MemoryMappedFile.OpenExisting(Constants.MemMapFileName);
-                FileMapView = iRacingFile.CreateViewAccessor();
-
-                var hEvent = OpenEvent(Constants.DesiredAccess, false, Constants.DataValidEventName);
-                var are = new AutoResetEvent(false)
+                try
                 {
-                    // This is deprecated, need better option
-                    SafeWaitHandle = new SafeWaitHandle(hEvent, true)
-                };
+                    iRacingFile = MemoryMappedFile.OpenExisting(Constants.MemMapFileName);
+                    FileMapView = iRacingFile.CreateViewAccessor();
 
-                var wh = new WaitHandle[1];
-                wh[0] = are;
+                    var hEvent = OpenEvent(Constants.DesiredAccess, false, Constants.DataValidEventName);
+                    var are = new AutoResetEvent(false)
+                    {
+                        // This is deprecated, need better option
+                        SafeWaitHandle = new SafeWaitHandle(hEvent, true)
+                    };
 
-                WaitHandle.WaitAny(wh);
+                    var wh = new WaitHandle[1];
+                    wh[0] = are;
 
-                Header = new IRacingSdkHeader(FileMapView);
-                GetVarHeaders();
+                    WaitHandle.WaitAny(wh);
 
-                IsInitialized = true;
+                    Header = new IRacingSdkHeader(FileMapView);
+                    GetVarHeaders();
+
+                    IsInitialized = true;
+                }
+                catch (FileNotFoundException)
+                {
+                    throw new IRNotFoundException();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                return true;
             }
-            catch (FileNotFoundException)
+            else
             {
-                throw new IRNotFoundException();
+                throw new IRNotRunningException();
             }
-            catch (Exception)
-            {
-                return false;
-            }
-            return true;
         }
 
         private void GetVarHeaders()

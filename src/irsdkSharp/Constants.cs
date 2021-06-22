@@ -7,6 +7,7 @@
         public const string MemMapFileName = "Local\\IRSDKMemMapFileName";
         public const string BroadcastMessageName = "IRSDK_BROADCASTMSG";
         public const string PadCarNumName = "IRSDK_PADCARNUM";
+        public const string IRStatusAddress = "http://127.0.0.1:32034/get_sim_status?object=simStatus";
         public const int MaxString = 32;
         public const int MaxDesc = 64;
         public const int MaxVars = 4096;

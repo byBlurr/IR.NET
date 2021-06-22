@@ -175,7 +175,7 @@ namespace irsdkSharp.ConsoleTest
                     {
                         sdk.Startup();
                     }
-                    catch (IRNotFoundException e)
+                    catch (IRNotRunningException e)
                     {
                         Console.WriteLine(e.Message);
                     }
