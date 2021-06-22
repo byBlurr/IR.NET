@@ -48,7 +48,7 @@ namespace iRacing
             _encoding = Encoding.GetEncoding(1252);
         }
 
-        private bool GetSimStatus()
+        public static bool GetSimStatus()
         {
             using (WebClient client = new WebClient())
             {
