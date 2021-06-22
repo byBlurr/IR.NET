@@ -7,4 +7,6 @@ Then modified and released as a .netstandard & net 5.0 project by https://github
 Now further modified by myself for my personal projects.
 
 ## Usage
-I will add an example project as well as some guidance here...
+- Simply install the latest version of `IR.NET` on NuGet.
+- Add the `iRacing` namespace to your class.
+- You can use the dashboard example project `IRNET.Example` to help get started.
