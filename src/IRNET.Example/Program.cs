@@ -17,7 +17,7 @@ namespace IRNET.Example
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DashboardWindow());
+            Application.Run(new MainWindow());
         }
     }
 }

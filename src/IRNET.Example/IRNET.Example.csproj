@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\irsdkSharp.Calculation\IRNET.Calculation.csproj" />
     <ProjectReference Include="..\irsdkSharp.Serialization\IRNET.Serialization.csproj" />
     <ProjectReference Include="..\irsdkSharp\IRNET.csproj" />

@@ -147,6 +147,7 @@ namespace IRNET.Example
             this.Controls.Add(this.SpeedIndicator);
             this.Controls.Add(this.RevsIndicator);
             this.Controls.Add(this.GearIndicator);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(1260, 900);
             this.Name = "DashboardWindow";

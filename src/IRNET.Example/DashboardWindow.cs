@@ -19,16 +19,21 @@ namespace IRNET.Example
         private IRSessionModel CurrentSession = null;
 
         private float MaxRevs = 7400;
-        private float OptimumShiftMin = 6400;
-        private float OptimumShiftMax = 6800;
-        private float GoodShiftMin = 6000;
-        private float MinRpm = 5200;
+        private float OptimumShift = 6400;
+        private float Redline = 6800;
 
         public DashboardWindow()
         {
             InitializeComponent();
 
             Client = IRClient.GetInstance();
+        }
+
+        public void UpdateSettings(Settings settings)
+        {
+            MaxRevs = settings.MaximumRpm;
+            OptimumShift = settings.OptimumShift;
+            Redline = settings.Redline;
         }
 
         private void Update(object sender, EventArgs e)
@@ -94,7 +99,7 @@ namespace IRNET.Example
             RevsFore.BackColor = Color.Gray;
             RevsFore.Width = RevsBack.Width;
             RevsIndicator.ForeColor = Color.Gray;
-            RevsIndicator.Text = "000rpm";
+            RevsIndicator.Text = "0000rpm";
             SpeedIndicator.ForeColor = Color.Gray;
             SpeedIndicator.Text = "000mph";
             BestTime.ForeColor = Color.Gray;
@@ -120,11 +125,9 @@ namespace IRNET.Example
             else if (data.LapDeltaToSessionBestLap_OK) CurrentLap.ForeColor = Color.Green;
             else CurrentLap.ForeColor = Color.Red;
 
-            if (data.RPM > OptimumShiftMax) RevsFore.BackColor = Color.Red;
-            else if (data.RPM > OptimumShiftMin) RevsFore.BackColor = Color.Purple;
-            else if (data.RPM > GoodShiftMin) RevsFore.BackColor = Color.Yellow;
-            else if (data.RPM > MinRpm) RevsFore.BackColor = Color.Green;
-            else RevsFore.BackColor = Color.White;
+            if (data.RPM > Redline) RevsFore.BackColor = Color.Red;
+            else if (data.RPM > OptimumShift) RevsFore.BackColor = Color.Purple;
+            else RevsFore.BackColor = Color.Green;
 
             GearIndicator.ForeColor = Color.DarkGray;
             RevsIndicator.ForeColor = Color.DarkGray;
