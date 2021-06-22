@@ -1,9 +1,7 @@
-﻿using irsdkSharp.Calculation;
-using irsdkSharp.Exceptions;
+﻿using irsdkSharp.Exceptions;
 using irsdkSharp.Serialization;
 using irsdkSharp.Serialization.Models.Session;
 using System;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,12 +10,12 @@ namespace irsdkSharp.ConsoleTest
 {
     class Program
     {
+        private static IRacingSDK Client;
+
         private static bool _hasConnected;
-        private static int waitTime;
-        private static Thread _looper;
-        private static System.Timers.Timer timer;
-        private static IRacingSDK sdk;
         private static bool _IsConnected = false;
+
+        private static int waitTime;
         private static IRacingSessionModel _session;
 
         private static double _TelemetryUpdateFrequency;
@@ -58,13 +56,7 @@ namespace irsdkSharp.ConsoleTest
 
         static void Main(string[] args)
         {
-            //var testYml = File.ReadAllText("session.yml");
-            //var model = IRacingSessionModel.Serialize(testYml);
-            //var race = model.SessionInfo.Sessions.FirstOrDefault(x => x.SessionType.ToLower() == "race");
-            //var gains = _rating.CalculateGains(race, model.DriverInfo.Drivers);
-
-
-            sdk = new IRacingSDK();
+            Client = new IRacingSDK();
             ConnectSleepTime = 1000;
             Task.Run(() => Loop());
 
@@ -78,18 +70,10 @@ namespace irsdkSharp.ConsoleTest
             while (true)
             {
                 // Check if we can find the sim
-                if (sdk.IsConnected())
+                if (Client.IsConnected())
                 {
-                    if (!_IsConnected)
-                    {
-                        // If this is the first time, raise the Connected event
-                        //this.RaiseEvent(OnConnected, EventArgs.Empty);
-                    }
-
                     _hasConnected = true;
                     _IsConnected = true;
-
-                    //readMutex.WaitOne(8);
 
                     int attempts = 0;
                     const int maxAttempts = 99;
@@ -109,21 +93,17 @@ namespace irsdkSharp.ConsoleTest
                     // Parse out your own driver Id
                     if (DriverId == -1)
                     {
-                        _DriverId = (int)sdk.GetData("PlayerCarIdx");
+                        _DriverId = (int)Client.GetData("PlayerCarIdx");
                     }
 
-                    var data = sdk.GetSerializedData();
-
-                    // Raise the TelemetryUpdated event and pass along the lap info and session time
-                    //var telArgs = new TelemetryUpdatedEventArgs(new TelemetryInfo(sdk), time);
-                    // this.RaiseEvent(OnTelemetryUpdated, telArgs);
+                    var data = Client.GetSerializedData();
 
                     // Is the session info updated?
-                    int newUpdate = sdk.Header.SessionInfoUpdate;
+                    int newUpdate = Client.Header.SessionInfoUpdate;
                     if (newUpdate != lastUpdate)
                     {
                         lastUpdate = newUpdate;
-                        _session = sdk.GetSerializedSessionInfo();
+                        _session = Client.GetSerializedSessionInfo();
                     }
 
                     if(data != null && _session != null)
@@ -140,25 +120,12 @@ namespace irsdkSharp.ConsoleTest
                             }
 
                         }
-
-                        //foreach (var driver in _session.DriverInfo.Drivers.Where(x => x.IsSpectator == 0).Where(x => x.CarIsPaceCar == "0").Where(x => x.CarIsAI == "0"))
-                        //{
-                        //    var currentData = data.Data.Cars.Where(x => x.CarIdx == driver.CarIdx).FirstOrDefault();
-                        //    if (currentData.CarIdxLap != 0 && currentData.CarIdxLapDistPct == -1)
-                        //    {
-                        //        Console.WriteLine($"{driver.CarNumber} {string.Format("{0:0.00}", currentData.CarIdxLapDistPct * 100)}");
-                        //    } 
-                        //    else
-                        //    {
-                        //        var a = "";
-                        //    }
-                        //}
                     }
 
                 }
                 else if (_hasConnected)
                 {
-                    sdk.Shutdown();
+                    Client.Shutdown();
                     _DriverId = -1;
                     lastUpdate = -1;
                     _IsConnected = false;
@@ -173,7 +140,7 @@ namespace irsdkSharp.ConsoleTest
                     //Try to find the sim
                     try
                     {
-                        sdk.Startup();
+                        Client.Startup();
                     }
                     catch (IRNotRunningException e)
                     {
@@ -199,7 +166,7 @@ namespace irsdkSharp.ConsoleTest
         {
             try
             {
-                var sessionnum = sdk.GetData("SessionNum");
+                var sessionnum = Client.GetData("SessionNum");
                 return sessionnum;
             }
             catch
