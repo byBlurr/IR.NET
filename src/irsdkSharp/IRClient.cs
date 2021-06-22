@@ -16,36 +16,18 @@ namespace iRacing
 {
     public class IRClient
     {
-        private readonly Encoding _encoding;
-
-        //VarHeader offsets
-        public const int VarOffsetOffset = 4;
-        public const int VarCountOffset = 8;
-        public const int VarNameOffset = 16;
-        public const int VarDescOffset = 48;
-        public const int VarUnitOffset = 112;
-        //public int VarHeaderSize = 144;
-
-
-        public bool IsInitialized = false;
-
-        MemoryMappedFile iRacingFile;
-        protected MemoryMappedViewAccessor FileMapView;
-
-        public static MemoryMappedViewAccessor GetFileMapView(IRClient racingSDK)
+        // IRInstance \\
+        private IRClient() 
         {
-            return racingSDK.FileMapView;
-        }
-        
-        public IRacingSdkHeader Header = null;
-
-        public List<VarHeader> VarHeaders = new List<VarHeader>();
-
-        public IRClient()
-        {
-            // Register CP1252 encoding
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             _encoding = Encoding.GetEncoding(1252);
+        }
+        private static IRClient IRInstance = null;
+
+        public static IRClient GetInstance()
+        {
+            if (IRInstance == null) IRInstance = new IRClient();
+            return IRInstance;
         }
 
         public static bool GetSimStatus()
@@ -57,6 +39,29 @@ namespace iRacing
                 return running;
             }
         }
+        public static MemoryMappedViewAccessor GetFileMapView()
+        {
+            return GetInstance().FileMapView;
+        }
+
+        // IRClient \\
+
+        private readonly Encoding _encoding;
+
+        public const int VarOffsetOffset = 4;
+        public const int VarCountOffset = 8;
+        public const int VarNameOffset = 16;
+        public const int VarDescOffset = 48;
+        public const int VarUnitOffset = 112;
+
+        public bool IsInitialized = false;
+
+        MemoryMappedFile iRacingFile;
+        protected MemoryMappedViewAccessor FileMapView;
+        
+        public IRacingSdkHeader Header = null;
+
+        public List<VarHeader> VarHeaders = new List<VarHeader>();
 
         public bool Startup()
         {

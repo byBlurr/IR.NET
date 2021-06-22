@@ -28,7 +28,7 @@ namespace IRNET.Example
         {
             InitializeComponent();
 
-            Client = new IRClient();
+            Client = IRClient.GetInstance();
         }
 
         private void Update(object sender, EventArgs e)

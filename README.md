@@ -9,4 +9,5 @@ Now further modified by myself for my personal projects.
 ## Usage
 - Simply install the latest version of `IR.NET` on NuGet.
 - Add the `iRacing` namespace to your class.
+- Create an IRClient instance with `IRClient.GetInstance();`
 - You can use the dashboard example project `IRNET.Example` to help get started.

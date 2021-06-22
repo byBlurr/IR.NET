@@ -56,7 +56,7 @@ namespace iRacing.ConsoleTest
 
         static void Main(string[] args)
         {
-            Client = new IRClient();
+            Client = IRClient.GetInstance();
             ConnectSleepTime = 1000;
             Task.Run(() => Loop());
 
