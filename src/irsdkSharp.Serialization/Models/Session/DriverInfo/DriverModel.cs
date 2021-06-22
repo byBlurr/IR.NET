@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace iRacing.Serialization.Models.Session.DriverInfo
+﻿namespace iRacing.Serialization.Models.Session.DriverInfo
 {
     public class DriverModel
     {
