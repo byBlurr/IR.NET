@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\irsdkSharp.Calculation\IRNET.Calculation.csproj" />
+    <ProjectReference Include="..\irsdkSharp.Serialization\IRNET.Serialization.csproj" />
+    <ProjectReference Include="..\irsdkSharp\IRNET.csproj" />
+  </ItemGroup>
+
+</Project>
