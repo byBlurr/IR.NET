@@ -25,9 +25,9 @@ namespace iRacing.Serialization
         {
             if (racingSDK.IsInitialized && racingSDK.Header != null)
             {
-                var length = (int)IRClient.GetFileMapView(racingSDK).Capacity;
+                var length = (int)IRClient.GetFileMapView().Capacity;
                 var data = new byte[length];
-                IRClient.GetFileMapView(racingSDK).ReadArray(0, data, 0, length);
+                IRClient.GetFileMapView().ReadArray(0, data, 0, length);
                 //Serialise the string into objects, tada!
                 return IRacingDataModel.Serialize(
                     data[racingSDK.Header.Buffer..(racingSDK.Header.Buffer + racingSDK.Header.BufferLength)],
