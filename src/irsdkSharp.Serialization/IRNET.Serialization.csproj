@@ -2,7 +2,7 @@
   
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
-    <PackageId>irsdkSharp.Serialization</PackageId>
+    <PackageId>IR.NET.Serialization</PackageId>
     <VersionPrefix>0.3.3</VersionPrefix>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
     <IncludeSymbols>true</IncludeSymbols>
@@ -12,12 +12,12 @@
     <Company>Slevinth Heaven Ltd</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Copyright>Slevinth Heaven Ltd 2020</Copyright>
-    <PackageProjectUrl>https://github.com/SlevinthHeaven/irsdkSharp</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/byBlurr/IR.NET</PackageProjectUrl>
     <Description>Serialization module for irsdkSharp</Description>
     <SignAssembly>true</SignAssembly>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
-    <AssemblyName>irsdkSharp.Serialization</AssemblyName>
-    <RootNamespace>irsdkSharp.Serialization</RootNamespace>
+    <AssemblyName>IR.NET.Serialization</AssemblyName>
+    <RootNamespace>iRacing.Serialization</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
