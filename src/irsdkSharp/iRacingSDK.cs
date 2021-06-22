@@ -8,6 +8,8 @@ using System.Threading;
 using System.Text;
 using System.Linq;
 using Microsoft.Win32.SafeHandles;
+using System.IO;
+using irsdkSharp.Exceptions;
 
 namespace irsdkSharp
 {
@@ -70,6 +72,10 @@ namespace irsdkSharp
                 GetVarHeaders();
 
                 IsInitialized = true;
+            }
+            catch (FileNotFoundException)
+            {
+                throw new IRNotFoundException();
             }
             catch (Exception)
             {

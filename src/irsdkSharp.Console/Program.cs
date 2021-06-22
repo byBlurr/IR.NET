@@ -1,4 +1,5 @@
 ﻿using irsdkSharp.Calculation;
+using irsdkSharp.Exceptions;
 using irsdkSharp.Serialization;
 using irsdkSharp.Serialization.Models.Session;
 using System;
@@ -170,7 +171,14 @@ namespace irsdkSharp.ConsoleTest
                     _DriverId = -1;
 
                     //Try to find the sim
-                    sdk.Startup();
+                    try
+                    {
+                        sdk.Startup();
+                    }
+                    catch (IRNotFoundException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
 
                 // Sleep for a short amount of time until the next update is available
