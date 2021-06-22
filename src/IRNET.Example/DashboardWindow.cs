@@ -1,6 +1,7 @@
 ﻿using iRacing;
 using iRacing.Exceptions;
 using iRacing.Serialization;
+using iRacing.Serialization.Models.Data;
 using iRacing.Serialization.Models.Session;
 using System;
 using System.Diagnostics;
@@ -51,26 +52,7 @@ namespace IRNET.Example
 
                         if (data != null && CurrentSession != null)
                         {
-                            GearIndicator.Text = data.Data.Gear == 0 ? "N" : data.Data.Gear.ToString();
-                            RevsFore.Width = (int)((float)RevsBack.Width * (data.Data.RPM / MaxRevs));
-                            RevsIndicator.Text = (int)data.Data.RPM + "rpm";
-                            SpeedIndicator.Text = (int)data.Data.Speed + "mph";
-
-                            int mins = (int)data.Data.LapBestLapTime / 60;
-                            BestTime.Text = mins + ":" + string.Format("{0:00.000}", (data.Data.LapBestLapTime - (float)(mins * 60)));
-
-                            int currentMins = (int)data.Data.LapCurrentLapTime / 60;
-                            CurrentLap.Text = currentMins + ":" + string.Format("{0:00.000}", (data.Data.LapCurrentLapTime - (float)(currentMins * 60)));
-
-                            if (data.Data.LapDeltaToSessionOptimalLap_OK) CurrentLap.ForeColor = Color.Purple;
-                            else if (data.Data.LapDeltaToSessionBestLap_OK) CurrentLap.ForeColor = Color.Green;
-                            else CurrentLap.ForeColor = Color.Red;
-
-                            if (data.Data.RPM > OptimumShiftMax) RevsFore.BackColor = Color.Red;
-                            else if (data.Data.RPM > OptimumShiftMin) RevsFore.BackColor = Color.Purple;
-                            else if (data.Data.RPM > GoodShiftMin) RevsFore.BackColor = Color.Yellow;
-                            else if (data.Data.RPM > MinRpm) RevsFore.BackColor = Color.Green;
-                            else RevsFore.BackColor = Color.White;
+                            UpdateDashboard(data.Data);
                         }
                         else
                         {
@@ -103,6 +85,38 @@ namespace IRNET.Example
                 SpeedIndicator.Text = "---mph";
                 BestTime.Text = "--:--.---";
                 CurrentLap.Text = "--:--.---";
+            }
+        }
+
+        private void UpdateDashboard(DataModel data)
+        {
+            GearIndicator.Text = data.Gear == 0 ? "N" : data.Gear == -1 ? "R" : data.Gear.ToString();
+            RevsFore.Width = (int)((float)RevsBack.Width * (data.RPM / MaxRevs));
+            RevsIndicator.Text = (int)data.RPM + "rpm";
+            SpeedIndicator.Text = (int)data.Speed + "mph";
+
+            int mins = (int)data.LapBestLapTime / 60;
+            BestTime.Text = mins + ":" + string.Format("{0:00.000}", (data.LapBestLapTime - (float)(mins * 60)));
+
+            int currentMins = (int)data.LapCurrentLapTime / 60;
+            CurrentLap.Text = currentMins + ":" + string.Format("{0:00.000}", (data.LapCurrentLapTime - (float)(currentMins * 60)));
+
+            if (data.LapDeltaToSessionOptimalLap_OK) CurrentLap.ForeColor = Color.Purple;
+            else if (data.LapDeltaToSessionBestLap_OK) CurrentLap.ForeColor = Color.Green;
+            else CurrentLap.ForeColor = Color.Red;
+
+            if (data.RPM > OptimumShiftMax) RevsFore.BackColor = Color.Red;
+            else if (data.RPM > OptimumShiftMin) RevsFore.BackColor = Color.Purple;
+            else if (data.RPM > GoodShiftMin) RevsFore.BackColor = Color.Yellow;
+            else if (data.RPM > MinRpm) RevsFore.BackColor = Color.Green;
+            else RevsFore.BackColor = Color.White;
+        }
+
+        private void SettingsMenuItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Text.Equals("Close"))
+            {
+                this.Close();
             }
         }
     }
