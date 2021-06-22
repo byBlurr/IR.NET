@@ -1,6 +1,6 @@
-﻿using irsdkSharp.Enums;
+﻿using iRacing.Enums;
 
-namespace irsdkSharp.Models
+namespace iRacing.Models
 {
     public class VarHeader
     {

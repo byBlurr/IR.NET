@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace irsdkSharp.Serialization.Models.Session.SessionInfo
+namespace iRacing.Serialization.Models.Session.SessionInfo
 {
     public class SessionInfoModel
     {

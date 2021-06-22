@@ -1,16 +1,16 @@
-﻿using irsdkSharp.Exceptions;
-using irsdkSharp.Serialization;
-using irsdkSharp.Serialization.Models.Session;
+﻿using iRacing.Exceptions;
+using iRacing.Serialization;
+using iRacing.Serialization.Models.Session;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace irsdkSharp.ConsoleTest
+namespace iRacing.ConsoleTest
 {
     class Program
     {
-        private static IRacingSDK Client;
+        private static IRClient Client;
 
         private static bool _hasConnected;
         private static bool _IsConnected = false;
@@ -56,7 +56,7 @@ namespace irsdkSharp.ConsoleTest
 
         static void Main(string[] args)
         {
-            Client = new IRacingSDK();
+            Client = new IRClient();
             ConnectSleepTime = 1000;
             Task.Run(() => Loop());
 

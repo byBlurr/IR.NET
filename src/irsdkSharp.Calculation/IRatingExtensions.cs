@@ -1,12 +1,12 @@
-﻿using irsdkSharp.Serialization;
-using irsdkSharp.Serialization.Models.Data;
-using irsdkSharp.Serialization.Models.Session;
+﻿using iRacing.Serialization;
+using iRacing.Serialization.Models.Data;
+using iRacing.Serialization.Models.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
-namespace irsdkSharp.Calculation
+namespace iRacing.Calculation
 {
     public static class IRatingExtensions
     {
@@ -147,7 +147,7 @@ namespace irsdkSharp.Calculation
             return result;
         }
 
-        public static Dictionary<int, double> CalculateIRatingGains(this IRacingSDK racingSDK)
+        public static Dictionary<int, double> CalculateIRatingGains(this IRClient racingSDK)
         {
             var sessionModel = racingSDK.GetSerializedSessionInfo();
 

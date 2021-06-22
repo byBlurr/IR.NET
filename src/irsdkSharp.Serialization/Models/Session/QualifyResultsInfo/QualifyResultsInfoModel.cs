@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace irsdkSharp.Serialization.Models.Session.QualifyResultsInfo
+namespace iRacing.Serialization.Models.Session.QualifyResultsInfo
 {
     public class QualifyResultsInfoModel
     {

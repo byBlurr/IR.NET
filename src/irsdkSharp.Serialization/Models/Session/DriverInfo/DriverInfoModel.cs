@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace irsdkSharp.Serialization.Models.Session.DriverInfo
+namespace iRacing.Serialization.Models.Session.DriverInfo
 {
     public class DriverInfoModel
     {

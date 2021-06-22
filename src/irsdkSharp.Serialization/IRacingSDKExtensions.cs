@@ -1,15 +1,15 @@
-﻿using irsdkSharp.Models;
-using irsdkSharp.Serialization.Models.Data;
-using irsdkSharp.Serialization.Models.Session;
+﻿using iRacing.Models;
+using iRacing.Serialization.Models.Data;
+using iRacing.Serialization.Models.Session;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace irsdkSharp.Serialization
+namespace iRacing.Serialization
 {
     public static class IRacingSDKExtensions
     {
-        public static IRacingSessionModel GetSerializedSessionInfo(this IRacingSDK racingSDK)
+        public static IRacingSessionModel GetSerializedSessionInfo(this IRClient racingSDK)
         {
             var sessionInfo = racingSDK.GetSessionInfo();
 
@@ -21,13 +21,13 @@ namespace irsdkSharp.Serialization
             return IRacingSessionModel.Serialize(sessionInfo);
         }
 
-        public static IRacingDataModel GetSerializedData(this IRacingSDK racingSDK)
+        public static IRacingDataModel GetSerializedData(this IRClient racingSDK)
         {
             if (racingSDK.IsInitialized && racingSDK.Header != null)
             {
-                var length = (int)IRacingSDK.GetFileMapView(racingSDK).Capacity;
+                var length = (int)IRClient.GetFileMapView(racingSDK).Capacity;
                 var data = new byte[length];
-                IRacingSDK.GetFileMapView(racingSDK).ReadArray(0, data, 0, length);
+                IRClient.GetFileMapView(racingSDK).ReadArray(0, data, 0, length);
                 //Serialise the string into objects, tada!
                 return IRacingDataModel.Serialize(
                     data[racingSDK.Header.Buffer..(racingSDK.Header.Buffer + racingSDK.Header.BufferLength)],
@@ -36,7 +36,7 @@ namespace irsdkSharp.Serialization
             return null;
         }
 
-        public static List<CarModel> GetPositions(this IRacingSDK racingSDK)
+        public static List<CarModel> GetPositions(this IRClient racingSDK)
         {
             var tick = (double)racingSDK.GetData("SessionTime");
             //var CarIdx = (int[])racingSDK.GetData("CarIdx");

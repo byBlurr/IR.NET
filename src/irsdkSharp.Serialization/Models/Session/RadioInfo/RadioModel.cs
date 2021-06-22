@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace irsdkSharp.Serialization.Models.Session.RadioInfo
+namespace iRacing.Serialization.Models.Session.RadioInfo
 {
     public class RadioModel
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace irsdkSharp.Exceptions
+namespace iRacing.Exceptions
 {
     [Serializable]
     public class IRNotRunningException : Exception

@@ -1,12 +1,12 @@
-﻿using irsdkSharp.Calculation.Models;
-using irsdkSharp.Serialization;
-using irsdkSharp.Serialization.Models.Data;
-using irsdkSharp.Serialization.Models.Session;
+﻿using iRacing.Calculation.Models;
+using iRacing.Serialization;
+using iRacing.Serialization.Models.Data;
+using iRacing.Serialization.Models.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace irsdkSharp.Calculation
+namespace iRacing.Calculation
 {
     public static class GapIntervalExtensions
     {
@@ -165,7 +165,7 @@ namespace irsdkSharp.Calculation
             return results;
         }
 
-        public static List<CarGapIntervalModel> CalculateGapsAndIntervals(this IRacingSDK racingSDK)
+        public static List<CarGapIntervalModel> CalculateGapsAndIntervals(this IRClient racingSDK)
         {
             var sessionModel = racingSDK.GetSerializedSessionInfo();
 

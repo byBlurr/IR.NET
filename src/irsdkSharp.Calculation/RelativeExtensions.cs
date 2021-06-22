@@ -1,13 +1,13 @@
-﻿using irsdkSharp.Calculation.Models;
-using irsdkSharp.Serialization;
-using irsdkSharp.Serialization.Models.Data;
-using irsdkSharp.Serialization.Models.Session;
+﻿using iRacing.Calculation.Models;
+using iRacing.Serialization;
+using iRacing.Serialization.Models.Data;
+using iRacing.Serialization.Models.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
-namespace irsdkSharp.Calculation
+namespace iRacing.Calculation
 {
     public static class RelativeExtensions
     {
@@ -68,7 +68,7 @@ namespace irsdkSharp.Calculation
             return relatives;
         }
 
-        public static Dictionary<int, CarRelativeModel> CalculateRelatives(this IRacingSDK racingSDK)
+        public static Dictionary<int, CarRelativeModel> CalculateRelatives(this IRClient racingSDK)
         {
             var sessionModel = racingSDK.GetSerializedSessionInfo();
 

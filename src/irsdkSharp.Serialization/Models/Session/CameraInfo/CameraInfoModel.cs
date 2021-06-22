@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace irsdkSharp.Serialization.Models.Session.CameraInfo
+namespace iRacing.Serialization.Models.Session.CameraInfo
 {
     public class CameraInfoModel
     {

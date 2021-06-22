@@ -1,6 +1,6 @@
 using System;
 
-namespace irsdkSharp.Calculation.Models
+namespace iRacing.Calculation.Models
 {
     public class CarGapIntervalModel
     {

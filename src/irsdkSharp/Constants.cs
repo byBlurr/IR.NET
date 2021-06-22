@@ -1,4 +1,4 @@
-﻿namespace irsdkSharp
+﻿namespace iRacing
 {
     public static class Constants
     {

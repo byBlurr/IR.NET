@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace irsdkSharp.Serialization.Models.Session.SplitTimeInfo
+namespace iRacing.Serialization.Models.Session.SplitTimeInfo
 {
     public class SectorModel
     {

@@ -1,4 +1,4 @@
-﻿namespace irsdkSharp.Serialization.Models.Session.SessionInfo
+﻿namespace iRacing.Serialization.Models.Session.SessionInfo
 {
     public class PositionModel
     {

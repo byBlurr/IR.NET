@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace irsdkSharp.Serialization.Models.Data
+namespace iRacing.Serialization.Models.Data
 {
     public class CarModel
     {

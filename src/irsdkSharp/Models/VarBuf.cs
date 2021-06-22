@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace irsdkSharp.Models
+namespace iRacing.Models
 {
     internal class VarBuf
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO.MemoryMappedFiles;
 using System.Linq;
 
-namespace irsdkSharp.Models
+namespace iRacing.Models
 {
     public class IRacingSdkHeader
     {

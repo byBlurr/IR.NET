@@ -1,4 +1,4 @@
-﻿namespace irsdkSharp.Serialization.Models.Session.WeekendInfo
+﻿namespace iRacing.Serialization.Models.Session.WeekendInfo
 {
     public class TelemetryOptionsModel
     {

@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.IO.MemoryMappedFiles;
-using irsdkSharp.Enums;
-using irsdkSharp.Models;
-using System.Threading;
-using System.Text;
-using System.Linq;
+﻿using iRacing.Enums;
+using iRacing.Exceptions;
+using iRacing.Models;
 using Microsoft.Win32.SafeHandles;
+using System;
+using System.Collections.Generic;
 using System.IO;
-using irsdkSharp.Exceptions;
+using System.IO.MemoryMappedFiles;
+using System.Linq;
 using System.Net;
-using Newtonsoft.Json;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
 
-namespace irsdkSharp
+namespace iRacing
 {
-    public class IRacingSDK
+    public class IRClient
     {
         private readonly Encoding _encoding;
 
@@ -33,7 +32,7 @@ namespace irsdkSharp
         MemoryMappedFile iRacingFile;
         protected MemoryMappedViewAccessor FileMapView;
 
-        public static MemoryMappedViewAccessor GetFileMapView(IRacingSDK racingSDK)
+        public static MemoryMappedViewAccessor GetFileMapView(IRClient racingSDK)
         {
             return racingSDK.FileMapView;
         }
@@ -42,7 +41,7 @@ namespace irsdkSharp
 
         public List<VarHeader> VarHeaders = new List<VarHeader>();
 
-        public IRacingSDK()
+        public IRClient()
         {
             // Register CP1252 encoding
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);

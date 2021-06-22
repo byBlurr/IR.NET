@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace irsdkSharp.Enums
+namespace iRacing.Enums
 {
     public enum VarType 
     { 

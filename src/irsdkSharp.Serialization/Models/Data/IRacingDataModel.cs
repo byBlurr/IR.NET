@@ -1,11 +1,11 @@
-﻿using irsdkSharp.Enums;
-using irsdkSharp.Models;
+﻿using iRacing.Enums;
+using iRacing.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace irsdkSharp.Serialization.Models.Data
+namespace iRacing.Serialization.Models.Data
 {
     public class IRacingDataModel
     {

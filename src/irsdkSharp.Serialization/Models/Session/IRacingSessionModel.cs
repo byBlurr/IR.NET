@@ -1,15 +1,15 @@
-﻿using irsdkSharp.Serialization.Models.Session.CameraInfo;
-using irsdkSharp.Serialization.Models.Session.DriverInfo;
-using irsdkSharp.Serialization.Models.Session.QualifyResultsInfo;
-using irsdkSharp.Serialization.Models.Session.RadioInfo;
-using irsdkSharp.Serialization.Models.Session.SessionInfo;
-using irsdkSharp.Serialization.Models.Session.SplitTimeInfo;
-using irsdkSharp.Serialization.Models.Session.WeekendInfo;
+﻿using iRacing.Serialization.Models.Session.CameraInfo;
+using iRacing.Serialization.Models.Session.DriverInfo;
+using iRacing.Serialization.Models.Session.QualifyResultsInfo;
+using iRacing.Serialization.Models.Session.RadioInfo;
+using iRacing.Serialization.Models.Session.SessionInfo;
+using iRacing.Serialization.Models.Session.SplitTimeInfo;
+using iRacing.Serialization.Models.Session.WeekendInfo;
 using System;
 using System.IO;
 using YamlDotNet.Serialization;
 
-namespace irsdkSharp.Serialization.Models.Session
+namespace iRacing.Serialization.Models.Session
 {
     public class IRacingSessionModel
     {
