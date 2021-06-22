@@ -57,6 +57,7 @@ namespace IRNET.Example
 
                         if (data != null && CurrentSession != null)
                         {
+                            Visible = !data.Data.IsInGarage;
                             UpdateDashboard(data.Data);
                         }
                         else
