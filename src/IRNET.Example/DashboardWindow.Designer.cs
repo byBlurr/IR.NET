@@ -48,7 +48,7 @@ namespace IRNET.Example
             // GearIndicator
             // 
             this.GearIndicator.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 50F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.GearIndicator.Location = new System.Drawing.Point(168, 22);
+            this.GearIndicator.Location = new System.Drawing.Point(163, 22);
             this.GearIndicator.Name = "GearIndicator";
             this.GearIndicator.Size = new System.Drawing.Size(100, 104);
             this.GearIndicator.TabIndex = 0;

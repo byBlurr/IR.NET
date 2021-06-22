@@ -57,16 +57,19 @@ namespace IRNET.Example
                         else
                         {
                             Debug.WriteLine("data or current session is null...");
+                            ResetDashboard();
                         }
                     }
                     else
                     {
                         Debug.WriteLine("Couldn't find session...");
+                        ResetDashboard();
                     }
                 }
                 else
                 {
                     DriverId = -1;
+                    ResetDashboard();
 
                     try
                     {
@@ -80,12 +83,24 @@ namespace IRNET.Example
             }
             else
             {
-                GearIndicator.Text = "-";
-                RevsIndicator.Text = "---rpm";
-                SpeedIndicator.Text = "---mph";
-                BestTime.Text = "--:--.---";
-                CurrentLap.Text = "--:--.---";
+                ResetDashboard();
             }
+        }
+
+        private void ResetDashboard()
+        {
+            GearIndicator.ForeColor = Color.Gray;
+            GearIndicator.Text = "N";
+            RevsFore.BackColor = Color.Gray;
+            RevsFore.Width = RevsBack.Width;
+            RevsIndicator.ForeColor = Color.Gray;
+            RevsIndicator.Text = "000rpm";
+            SpeedIndicator.ForeColor = Color.Gray;
+            SpeedIndicator.Text = "000mph";
+            BestTime.ForeColor = Color.Gray;
+            BestTime.Text = "00:00.000";
+            CurrentLap.ForeColor = Color.Gray;
+            CurrentLap.Text = "00:00.000";
         }
 
         private void UpdateDashboard(DataModel data)
@@ -110,6 +125,11 @@ namespace IRNET.Example
             else if (data.RPM > GoodShiftMin) RevsFore.BackColor = Color.Yellow;
             else if (data.RPM > MinRpm) RevsFore.BackColor = Color.Green;
             else RevsFore.BackColor = Color.White;
+
+            GearIndicator.ForeColor = Color.DarkGray;
+            RevsIndicator.ForeColor = Color.DarkGray;
+            SpeedIndicator.ForeColor = Color.DarkGray;
+            BestTime.ForeColor = Color.DarkGray;
         }
 
         private void SettingsMenuItemClicked(object sender, ToolStripItemClickedEventArgs e)
