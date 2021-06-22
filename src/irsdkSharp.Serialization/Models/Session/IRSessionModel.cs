@@ -11,9 +11,9 @@ using YamlDotNet.Serialization;
 
 namespace iRacing.Serialization.Models.Session
 {
-    public class IRacingSessionModel
+    public class IRSessionModel
     {
-        public static IRacingSessionModel Serialize(string yaml)
+        public static IRSessionModel Serialize(string yaml)
         {
             if (yaml.IndexOf("CarSetup:") != -1)
             {
@@ -24,7 +24,7 @@ namespace iRacing.Serialization.Models.Session
             var deserializer = new DeserializerBuilder().Build();
             try
             {
-                return deserializer.Deserialize<IRacingSessionModel>(r);
+                return deserializer.Deserialize<IRSessionModel>(r);
             }
             catch(Exception ex)
             {

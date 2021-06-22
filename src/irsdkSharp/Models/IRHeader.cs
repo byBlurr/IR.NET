@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace iRacing.Models
 {
-    public class IRacingSdkHeader
+    public class IRHeader
     {
         private readonly MemoryMappedViewAccessor _mapView;
-        public IRacingSdkHeader(MemoryMappedViewAccessor mapView)
+        public IRHeader(MemoryMappedViewAccessor mapView)
         {
             _mapView = mapView;
         }

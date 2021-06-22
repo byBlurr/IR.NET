@@ -16,7 +16,7 @@ namespace IRNET.Example
 
         private int DriverId = -1;
         private int LastUpdate = -1;
-        private IRacingSessionModel CurrentSession = null;
+        private IRSessionModel CurrentSession = null;
 
         private float MaxRevs = 7400;
         private float OptimumShiftMin = 6400;

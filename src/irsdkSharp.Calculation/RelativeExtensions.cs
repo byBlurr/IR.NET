@@ -11,7 +11,7 @@ namespace iRacing.Calculation
 {
     public static class RelativeExtensions
     {
-        public static Dictionary<int, CarRelativeModel> CalculateRelatives(IRacingDataModel dataModel, IRacingSessionModel sessionModel)
+        public static Dictionary<int, CarRelativeModel> CalculateRelatives(IRDataModel dataModel, IRSessionModel sessionModel)
         {
             if (sessionModel == null) return null;
             if (dataModel == null) return null;

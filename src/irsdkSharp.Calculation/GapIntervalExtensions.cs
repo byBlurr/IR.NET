@@ -21,7 +21,7 @@ namespace iRacing.Calculation
         /// <param name="dataModel"></param>
         /// <param name="sessionModel"></param>
         /// <returns></returns>
-        public static List<CarGapIntervalModel> CalculateGapsAndIntervals(IRacingDataModel dataModel, IRacingSessionModel sessionModel)
+        public static List<CarGapIntervalModel> CalculateGapsAndIntervals(IRDataModel dataModel, IRSessionModel sessionModel)
         {
             if (sessionModel == null) return null;
             if (dataModel == null) return null;

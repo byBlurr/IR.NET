@@ -16,7 +16,7 @@ namespace iRacing.ConsoleTest
         private static bool _IsConnected = false;
 
         private static int waitTime;
-        private static IRacingSessionModel _session;
+        private static IRSessionModel _session;
 
         private static double _TelemetryUpdateFrequency;
         /// <summary>

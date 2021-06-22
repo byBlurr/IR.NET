@@ -12,7 +12,7 @@ namespace iRacing.Calculation
     {
         private static readonly double _initialConstant = 1600 / Math.Log(2);
               
-        public static Dictionary<int, double> CalculateIRatingGains(IRacingDataModel dataModel, IRacingSessionModel sessionModel)
+        public static Dictionary<int, double> CalculateIRatingGains(IRDataModel dataModel, IRSessionModel sessionModel)
         {
             if (sessionModel == null) return null;
 

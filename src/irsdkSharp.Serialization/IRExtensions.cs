@@ -7,9 +7,9 @@ using System.Text;
 
 namespace iRacing.Serialization
 {
-    public static class IRacingSDKExtensions
+    public static class IRExtensions
     {
-        public static IRacingSessionModel GetSerializedSessionInfo(this IRClient racingSDK)
+        public static IRSessionModel GetSerializedSessionInfo(this IRClient racingSDK)
         {
             var sessionInfo = racingSDK.GetSessionInfo();
 
@@ -18,10 +18,10 @@ namespace iRacing.Serialization
                 return null;
             }
 
-            return IRacingSessionModel.Serialize(sessionInfo);
+            return IRSessionModel.Serialize(sessionInfo);
         }
 
-        public static IRacingDataModel GetSerializedData(this IRClient racingSDK)
+        public static IRDataModel GetSerializedData(this IRClient racingSDK)
         {
             if (racingSDK.IsInitialized && racingSDK.Header != null)
             {
@@ -29,7 +29,7 @@ namespace iRacing.Serialization
                 var data = new byte[length];
                 IRClient.GetFileMapView().ReadArray(0, data, 0, length);
                 //Serialise the string into objects, tada!
-                return IRacingDataModel.Serialize(
+                return IRDataModel.Serialize(
                     data[racingSDK.Header.Buffer..(racingSDK.Header.Buffer + racingSDK.Header.BufferLength)],
                     racingSDK.VarHeaders);
             }

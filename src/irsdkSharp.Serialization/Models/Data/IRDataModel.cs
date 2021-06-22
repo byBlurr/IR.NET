@@ -7,9 +7,9 @@ using System.Text;
 
 namespace iRacing.Serialization.Models.Data
 {
-    public class IRacingDataModel
+    public class IRDataModel
     {
-        public static IRacingDataModel Serialize(Span<byte> toSerialize, List<VarHeader> headers)
+        public static IRDataModel Serialize(Span<byte> toSerialize, List<VarHeader> headers)
         {
 
             var dataModelProperties = typeof(DataModel).GetProperties().ToList();
@@ -57,7 +57,7 @@ namespace iRacing.Serialization.Models.Data
             }
             
             model.Cars = cars;
-            return new IRacingDataModel
+            return new IRDataModel
             {
                 Data = model,
                 Missing = missing

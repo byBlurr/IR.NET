@@ -59,7 +59,7 @@ namespace iRacing
         MemoryMappedFile iRacingFile;
         protected MemoryMappedViewAccessor FileMapView;
         
-        public IRacingSdkHeader Header = null;
+        public IRHeader Header = null;
 
         public List<VarHeader> VarHeaders = new List<VarHeader>();
 
@@ -86,7 +86,7 @@ namespace iRacing
 
                     WaitHandle.WaitAny(wh);
 
-                    Header = new IRacingSdkHeader(FileMapView);
+                    Header = new IRHeader(FileMapView);
                     GetVarHeaders();
 
                     IsInitialized = true;
