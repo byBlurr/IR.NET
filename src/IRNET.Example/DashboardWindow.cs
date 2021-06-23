@@ -63,13 +63,17 @@ namespace IRNET.Example
                         else
                         {
                             Debug.WriteLine("data or current session is null...");
+
                             ResetDashboard();
+                            Visible = false;
                         }
                     }
                     else
                     {
                         Debug.WriteLine("Couldn't find session...");
+
                         ResetDashboard();
+                        Visible = false;
                     }
                 }
                 else
@@ -90,6 +94,7 @@ namespace IRNET.Example
             else
             {
                 ResetDashboard();
+                Visible = false;
             }
         }
 
